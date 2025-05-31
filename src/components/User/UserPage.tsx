@@ -125,6 +125,7 @@ export default function UserPage() {
   const handleStatusChanged = async (taskId: string, newStatus: string) => {
     try {
       const result = await updateStatus(taskId, newStatus);
+      console.log(result);
       setCalls((prevCalls) =>
         prevCalls.map((call) => ({
           ...call,

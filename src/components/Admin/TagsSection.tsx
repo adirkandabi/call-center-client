@@ -39,7 +39,7 @@ export default function TagsSection() {
       setErrorMsg("");
       setLoading(true);
       const result = await createTag(inputValue);
-
+      console.log(result);
       await refreshTags();
     } catch (err: any) {
       console.log(err);
