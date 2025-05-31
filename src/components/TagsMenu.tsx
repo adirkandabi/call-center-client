@@ -8,7 +8,7 @@ interface TagsMenuProps {
   anchorEl: HTMLElement | null;
   onClose: () => void;
   onSelect: (tag: Tag) => void;
-  selectedTags: Tag[];
+  selectedTags: Tag[] | undefined;
 }
 
 export default function TagsMenu({
@@ -48,7 +48,7 @@ export default function TagsMenu({
       >
         {tags.length > 0 ? (
           tags
-            .filter((tag) => !selectedTags.some((t) => t._id === tag._id))
+            .filter((tag) => !selectedTags?.some((t) => t._id === tag._id))
             .map((tag) => (
               <MenuItem
                 key={tag._id}

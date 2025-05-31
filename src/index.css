@@ -1,7 +1,9 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
-
+h1 {
+  margin: 0;
+}
 /* a {
   font-weight: 500;
   color: #646cff;

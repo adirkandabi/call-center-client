@@ -12,7 +12,7 @@ export default function AdminPage() {
   return (
     <div className="admin-page">
       <div className="header">
-        <h1>Admin Page</h1>
+        <h1>Mangement System</h1>
         <Button variant="contained" onClick={handleClick}>
           User Panel
         </Button>

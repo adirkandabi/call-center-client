@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 interface EditModalProps {
   open: boolean;
+  label: string;
   onClose: () => void;
   onSave: (newTitle: string) => void;
   initialValue: string;
@@ -13,6 +14,7 @@ interface EditModalProps {
 
 export default function EditModal({
   open,
+  label,
   onClose,
   onSave,
   initialValue,
@@ -57,7 +59,7 @@ export default function EditModal({
         <div className="tags-form">
           <TextField
             id="outlined-input"
-            label="Tags Title"
+            label={`${label} Title`}
             placeholder="Edit the title"
             value={value}
             onChange={(e) => setValue(e.target.value)}

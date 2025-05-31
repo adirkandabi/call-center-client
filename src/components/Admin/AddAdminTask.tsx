@@ -80,22 +80,13 @@ export default function AddAdminTask({ onTaskCreated }: AddTaskFormProps) {
             {loading ? "Adding..." : "Add"}
           </Button>
         </div>
-        <h2>Tags</h2>
         <div className="tags-row">
+          <h2>Tags</h2>
           <div className="chosen-tags">
             {chosenTags.map((tag) => (
               <Tag key={tag._id} _id={tag._id} title={tag.title} />
             ))}
-            <AddCircleOutlineIcon
-              onClick={openTagMenu}
-              sx={{
-                transition: "all 0.2s ease-in-out",
-                "&:hover": {
-                  transform: "scale(1.2)",
-                  cursor: "pointer",
-                },
-              }}
-            />
+            <AddCircleOutlineIcon onClick={openTagMenu} className="add-btn" />
           </div>
           <TagsMenu
             anchorEl={anchorEl}

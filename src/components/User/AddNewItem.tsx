@@ -51,7 +51,11 @@ export default function AddNewItem({ open, onClose, onSave }: AddModalProps) {
             id="outlined-input"
             label="Name"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) =>
+              setValue(
+                e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1)
+              )
+            }
           />
           <Button
             onClick={handleSave}

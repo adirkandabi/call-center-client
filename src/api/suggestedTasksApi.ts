@@ -9,11 +9,13 @@ export const createSuggestedTask = async (title: string, tagsIds: string[]) => {
   return response;
 };
 
-export const getSuggestedTasks = async (tagsIds: string[] = []) => {
-  const response = await axios.get(
-    `${apiUrl}/suggested-tasks/${
-      tagsIds?.length ? `?tags=${tagsIds?.join(",")}` : ""
-    }`
-  );
+export const getSuggestedTasks = async () => {
+  const response = await axios.get(`${apiUrl}/suggested-tasks`);
   return response;
+};
+export const editTaskName = async (newName: string, taskId: string) => {
+  return await axios.patch(`${apiUrl}/suggested-tasks`, {
+    _id: taskId,
+    title: newName,
+  });
 };

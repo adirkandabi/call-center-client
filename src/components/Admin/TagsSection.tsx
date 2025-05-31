@@ -20,22 +20,7 @@ export default function TagsSection() {
   const [openEdit, setOpenEdit] = useState(false);
   const [currentTag, setCurrentTag] = useState<Tag | null>(null);
   const [errorModalText, setErrorModalText] = useState("");
-  //   useEffect(() => {
-  //     fetchTags();
-  //   }, []);
 
-  //   const fetchTags = async () => {
-  //     try {
-  //       const result = await getTags();
-  //       console.log(result);
-  //       setTags(result.data);
-  //     } catch (err: any) {
-  //       setErrorModalText("Somthing went wrong while fetching the tags list!");
-  //       console.log(err);
-  //     } finally {
-  //       setShowSpinner(false);
-  //     }
-  //   };
   const upperCaseFirstLetter = (str: string): string => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
@@ -105,13 +90,13 @@ export default function TagsSection() {
           variant="contained"
           disabled={loading}
         >
-          {loading ? "Adding..." : "Add"}
+          Add
         </Button>
       </div>
 
       <div className="tags-container container">
         {showSpinner ? (
-          <CircularProgress />
+          <CircularProgress className="spinner" />
         ) : !tags.length ? (
           <p className="empty-msg">No tags yet</p>
         ) : (
@@ -133,6 +118,7 @@ export default function TagsSection() {
             ))}
             <EditModal
               open={openEdit}
+              label="Tags"
               onClose={() => setOpenEdit(false)}
               onSave={handleSave}
               initialValue={currentTag?.title || ""}
