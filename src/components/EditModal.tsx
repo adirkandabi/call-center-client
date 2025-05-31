@@ -11,7 +11,7 @@ interface EditModalProps {
   onSave: (newTitle: string) => void;
   initialValue: string;
 }
-
+// Edit title modal
 export default function EditModal({
   open,
   label,

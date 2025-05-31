@@ -18,6 +18,7 @@ import type Tag from "../../interfaces/Tag";
 import type CallTask from "../../interfaces/CallTask";
 import type AssignedTasks from "../../interfaces/AssignedTasks";
 
+// User panel component
 export default function UserPage() {
   const [fetchingCalls, setFetchingCalls] = useState(true);
   const [calls, setCalls] = useState<Call[]>([]);
@@ -38,6 +39,7 @@ export default function UserPage() {
       err?.response?.message || err?.message || "Somthing went wrong"
     );
   };
+  // Fetching all calls
   const fetchCalls = async () => {
     try {
       const result = await getCalls();
@@ -61,11 +63,13 @@ export default function UserPage() {
       setFetchingCalls(false);
     }
   };
+  // For open the call record
   const handleSelectCall = (id: string) => {
     const selectedCall = calls.find((call) => call._id === id);
     setSelectedId(id);
     setSelectedCall(selectedCall || null);
   };
+  // Submit a new call
   const handleCreateCall = async (title: string) => {
     try {
       const result = await CreateCall(
@@ -79,6 +83,7 @@ export default function UserPage() {
       handleError(err);
     }
   };
+  // Assign new tag to the call
   const handleAssignTag = async (tagId: string) => {
     try {
       const callId = selectedCall?._id;
@@ -101,6 +106,7 @@ export default function UserPage() {
       handleError(err);
     }
   };
+  // Submit a new task to the call
   const addCallTask = async (title: string) => {
     try {
       const callId = selectedCall?._id;
@@ -115,6 +121,7 @@ export default function UserPage() {
       handleError(err);
     }
   };
+  // Change task status
   const handleStatusChanged = async (taskId: string, newStatus: string) => {
     try {
       const result = await updateStatus(taskId, newStatus);
@@ -152,6 +159,7 @@ export default function UserPage() {
       handleError(err);
     }
   };
+  // Assign admin suggested task to the call record
   const handleAssignSuggestedTask = async (taskId: string) => {
     try {
       const callId = selectedCall?._id;
@@ -185,6 +193,7 @@ export default function UserPage() {
       handleError(err);
     }
   };
+  // Update all calls list and the selected call data
   const renderUpdatedCalls = (task: CallTask) => {
     setCalls((prevCalls) =>
       prevCalls.map((call) =>

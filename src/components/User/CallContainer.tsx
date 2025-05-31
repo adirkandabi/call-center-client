@@ -17,7 +17,7 @@ interface CallProp {
   onChangeStatus: (taskId: string, newStatus: string) => void;
   onAssignedTask: (taskId: string) => void;
 }
-
+// Selected call container
 export default function CallContainer({
   call,
   assignedTasksIds,
@@ -28,7 +28,6 @@ export default function CallContainer({
   onAssignedTask,
 }: CallProp) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const [callTags, setCallTags] = useState<TagType[] | undefined>(call?.tags);
   const handleNewCall = () => {
     onCreate();
   };

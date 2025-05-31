@@ -11,7 +11,7 @@ interface CallsMenuProps {
   onSelect: (id: string) => void;
   onCreate: (title: string) => void;
 }
-
+// All calls list
 export default function CallsMenu({
   calls,
   fetching,
@@ -19,10 +19,8 @@ export default function CallsMenu({
   onSelect,
   onCreate,
 }: CallsMenuProps) {
-  //   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [openModal, setOpenModal] = useState(false);
   const handleSelect = (id: string) => {
-    // setSelectedId(id);
     onSelect(id);
   };
   const handleAddCall = () => {

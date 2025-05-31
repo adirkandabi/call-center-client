@@ -1,11 +1,9 @@
 import { Button } from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import type { SelectChangeEvent } from "@mui/material/Select";
+
 import type CallTask from "../../interfaces/CallTask";
-import EditModal from "../EditModal";
 import { useState } from "react";
 import AddNewItem from "./AddNewItem";
 
@@ -14,7 +12,7 @@ interface UserTasksProps {
   onSaveTask: (title: string) => void;
   onStatusChange: (taskId: string, newStatus: string) => void;
 }
-
+// Custome tasks list - created by the user
 export default function UserTasks({
   tasks,
   onSaveTask,

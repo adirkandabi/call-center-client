@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type SuggestedTask from "../../interfaces/SuggestedTask";
-import EditIcon from "@mui/icons-material/Edit";
+
 import { CircularProgress } from "@mui/material";
 import Tag from "../Tag";
 import EditModal from "../EditModal";
@@ -11,6 +11,7 @@ interface componentProp {
   onEditTaskName: (newName: string, taskId: string) => void;
 }
 
+// All system suggested tasks list
 export default function DisplayAdminTasks({
   tasks,
   fetching,

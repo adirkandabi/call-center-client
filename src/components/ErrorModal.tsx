@@ -1,5 +1,3 @@
-// components/ErrorModal.tsx
-import React from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
 
 interface ErrorModalProps {
@@ -7,7 +5,7 @@ interface ErrorModalProps {
   message: string;
   onClose: () => void;
 }
-
+// Default erro modal
 export default function ErrorModal({
   open,
   message,

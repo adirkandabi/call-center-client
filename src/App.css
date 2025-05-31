@@ -104,12 +104,7 @@ section#admin-tasks {
 .single-task {
   width: 100%;
 }
-/* .single-tag p {
-  text-align: center;
-} */
-.tags-wrapper,
-.tags-form {
-}
+
 .tags-wrapper {
   display: flex;
   flex-direction: column;
@@ -258,7 +253,29 @@ section#admin-tasks {
   transform: scale(1.2);
   cursor: pointer;
 }
+@media (max-width: 400px) {
+  .empty-msg.new-call {
+    left: 15% !important;
+  }
+}
+@media (max-width: 550px) {
+  .calls-menu .menu-header {
+    gap: 5rem;
+  }
+  .empty-msg.new-call {
+    left: 20% !important;
+  }
+}
+@media (max-width: 700px) {
+  .empty-msg.new-call {
+    left: 35%;
+  }
+}
+
 @media (max-width: 1000px) {
+  .user-page {
+    margin: 2rem;
+  }
   .admin-container {
     flex-direction: column;
     gap: 1rem;
@@ -268,10 +285,13 @@ section#admin-tasks {
     width: 100%;
     align-items: center;
   }
-  .container {
+  .container:not(.call-tags-container) {
     max-width: none;
     width: 90%;
     margin: 0 3rem;
+  }
+  .task-item {
+    margin: 0 !important;
   }
   .all-tasks-container {
     padding: 1rem 0 !important;
@@ -282,13 +302,46 @@ section#admin-tasks {
   }
   .assigned-tags {
     justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .tasks-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .suggested-tasks-container,
+  .user-tasks-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tasks-header {
+    gap: 5rem;
+  }
+  .tasks-wrapper,
+  .suggested-tasks-wrapper {
+    align-items: center;
   }
 }
+
 @media (max-width: 1300px) {
   .admin-page {
     padding: 1rem 1rem;
   }
   .header {
     padding: 0;
+  }
+  .user-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+  }
+  .calls-menu,
+  .call-container {
+    width: 70%;
+    min-height: 20rem;
+  }
+  .call-container {
+    margin-bottom: 3rem;
   }
 }

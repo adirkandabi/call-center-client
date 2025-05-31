@@ -8,6 +8,7 @@ import { useState, type BaseSyntheticEvent } from "react";
 import type TagType from "../../interfaces/Tag";
 import { createSuggestedTask } from "../../api/suggestedTasksApi";
 import ErrorModal from "../ErrorModal";
+import { useTags } from "../../context/tagContext";
 
 interface AddTaskFormProps {
   onTaskCreated: (task: any) => void;
@@ -21,6 +22,7 @@ export default function AddAdminTask({ onTaskCreated }: AddTaskFormProps) {
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [errorModalText, setErrorModalText] = useState("");
+  const { tags } = useTags();
 
   const openTagMenu = (event: BaseSyntheticEvent) => {
     setAnchorEl(event.target);
@@ -34,28 +36,29 @@ export default function AddAdminTask({ onTaskCreated }: AddTaskFormProps) {
     const input = event.target.value;
     setInputValue(input.charAt(0).toUpperCase() + input.slice(1));
   };
+  // Submit a new suggested task
   const handleSubmit = async () => {
     try {
       setIsError(false);
       setErrorMsg("");
       setLoading(true);
+      // Validation
       if (!inputValue.trim()) {
         setIsError(true);
       } else if (!chosenTags.length) {
-        setIsError(true);
         setErrorMsg("At least one tag is required");
       } else {
         const tagsIds = chosenTags.map((tag) => tag._id);
         const result = await createSuggestedTask(inputValue, tagsIds);
         onTaskCreated(result.data);
         setChosenTags([]);
+        setInputValue("");
       }
     } catch (err: any) {
       console.log(err);
       setErrorModalText(err.response.data.error);
     } finally {
       setLoading(false);
-      setInputValue("");
     }
   };
   return (
@@ -86,12 +89,19 @@ export default function AddAdminTask({ onTaskCreated }: AddTaskFormProps) {
             {chosenTags.map((tag) => (
               <Tag key={tag._id} _id={tag._id} title={tag.title} />
             ))}
-            <AddCircleOutlineIcon onClick={openTagMenu} className="add-btn" />
+            {chosenTags.length === tags.length ? (
+              ""
+            ) : (
+              <AddCircleOutlineIcon onClick={openTagMenu} className="add-btn" />
+            )}
           </div>
           <TagsMenu
             anchorEl={anchorEl}
             onClose={closeTagMenu}
-            onSelect={(tag: TagType) => handleTagSelect(tag)}
+            onSelect={(tag: TagType) => {
+              handleTagSelect(tag);
+              setErrorMsg("");
+            }}
             selectedTags={chosenTags}
           />
         </div>

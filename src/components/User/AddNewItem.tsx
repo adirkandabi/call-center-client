@@ -3,14 +3,14 @@ import SendIcon from "@mui/icons-material/Send";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface AddModalProps {
   open: boolean;
   onClose: () => void;
   onSave: (newTitle: string) => void;
 }
-
+// Reusable component to add a new call/task
 export default function AddNewItem({ open, onClose, onSave }: AddModalProps) {
   const [value, setValue] = useState("");
 

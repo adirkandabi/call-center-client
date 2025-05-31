@@ -1,9 +1,9 @@
-import { useEffect, useState, type BaseSyntheticEvent } from "react";
+import { useState, type BaseSyntheticEvent } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
 import EditIcon from "@mui/icons-material/Edit";
-import { createTag, getTags, updateTag } from "../../api/tagsApi";
+import { createTag, updateTag } from "../../api/tagsApi";
 import EditModal from "../EditModal";
 import ErrorModal from "../ErrorModal";
 import { CircularProgress } from "@mui/material";
@@ -27,6 +27,7 @@ export default function TagsSection() {
   const handleChange = (event: BaseSyntheticEvent) => {
     setInputValue(upperCaseFirstLetter(event.target.value));
   };
+  // Submit new tag
   const handleClick = async () => {
     try {
       if (!inputValue.trim()) {
@@ -53,10 +54,12 @@ export default function TagsSection() {
       setInputValue("");
     }
   };
-  const handleEditClick = async (tag: Tag, event: BaseSyntheticEvent) => {
+  // Open modal to change tag name
+  const handleEditClick = async (tag: Tag) => {
     setCurrentTag(tag);
     setOpenEdit(true);
   };
+  // Submit new tag name
   const handleSave = async (newTitle: string) => {
     try {
       if (!currentTag) return;
@@ -105,7 +108,7 @@ export default function TagsSection() {
               <div className="single-tag" key={tag._id}>
                 <p>{tag.title}</p>
                 <EditIcon
-                  onClick={(e) => handleEditClick(tag, e)}
+                  onClick={() => handleEditClick(tag)}
                   sx={{
                     transition: "all 0.3s ease-in-out ",
                     "&:hover": {

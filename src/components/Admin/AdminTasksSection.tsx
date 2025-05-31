@@ -1,11 +1,6 @@
-import { useEffect, useState, type BaseSyntheticEvent } from "react";
-import type TagType from "../../interfaces/Tag";
-import {
-  createSuggestedTask,
-  editTaskName,
-  getSuggestedTasks,
-} from "../../api/suggestedTasksApi";
-import ErrorModal from "../ErrorModal";
+import { useEffect, useState } from "react";
+
+import { editTaskName, getSuggestedTasks } from "../../api/suggestedTasksApi";
 import DisplayAdminTasks from "./DisplayAdminTasks";
 import AddAdminTask from "./AddAdminTask";
 import type SuggestedTask from "../../interfaces/SuggestedTask";
@@ -21,6 +16,7 @@ export default function AdminTasksSection() {
   useEffect(() => {
     fetchTasks();
   }, []);
+  // Fetching all system suggested tasks
   const fetchTasks = async () => {
     try {
       const result = await getSuggestedTasks();
