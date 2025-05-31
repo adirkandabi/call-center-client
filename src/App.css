@@ -91,11 +91,12 @@ section#admin-tasks {
   background-color: #fff;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  border: 2px solid transparent;
 }
 .single-call.selected {
-  background-color: #e3f2fd; /* light blue */
-  border: 2px solid #1976d2; /* primary blue border */
-  box-shadow: 0 0 12px rgba(25, 118, 210, 0.5); /* soft glow */
+  background-color: #e3f2fd;
+  border: 2px solid #1976d2;
+  box-shadow: 0 0 12px rgba(25, 118, 210, 0.5);
   transform: scale(1.02);
 }
 .single-call:hover {
@@ -158,6 +159,7 @@ section#admin-tasks {
 }
 .tag-item {
   width: fit-content;
+  margin: 5px;
   max-width: 5rem;
   background-color: rgb(181, 214, 255);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
