@@ -13,8 +13,7 @@ import { useTags } from "../../context/tagContext";
 export default function TagsSection() {
   const [loading, setLoading] = useState(false);
 
-  const { tags, refreshTags, addTag, updateTagInState, showSpinner } =
-    useTags();
+  const { tags, refreshTags, updateTagInState, showSpinner } = useTags();
   const [inputValue, setInputValue] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [isError, setIsError] = useState(false);
