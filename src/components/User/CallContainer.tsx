@@ -7,6 +7,7 @@ import type TagType from "../../interfaces/Tag";
 import UserTasks from "./UserTasks";
 import SuggestedTasks from "./SuggestedTasks";
 import type AssignedTasks from "../../interfaces/AssignedTasks";
+import { useTags } from "../../context/tagContext";
 
 interface CallProp {
   call: Call | null;
@@ -28,6 +29,7 @@ export default function CallContainer({
   onAssignedTask,
 }: CallProp) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const { tags } = useTags();
   const handleNewCall = () => {
     onCreate();
   };
@@ -55,10 +57,14 @@ export default function CallContainer({
               {call.tags?.map((tag) => (
                 <Tag key={tag._id} _id={tag._id} title={tag.title} />
               ))}
-              <AddCircleOutlineIcon
-                onClick={handleClickNewTag}
-                className="add-btn"
-              />
+              {call.tags.length !== tags.length ? (
+                <AddCircleOutlineIcon
+                  onClick={handleClickNewTag}
+                  className="add-btn"
+                />
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </>
