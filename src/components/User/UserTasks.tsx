@@ -42,15 +42,30 @@ export default function UserTasks({
                     onStatusChange(task._id, event.target.value)
                   }
                   sx={{
-                    backgroundColor:
+                    border: `2px solid ${
                       task.status === "Open"
-                        ? "#e2453c" // red
+                        ? "#e2453c"
                         : task.status === "In Progress"
-                        ? "#f8cd19" // yellow
-                        : "#4caf50", // green
-                    color: task.status === "In Progress" ? "black" : "white", // better contrast
+                        ? "#f8cd19"
+                        : "#4caf50"
+                    }`,
                     "& .MuiSelect-select": {
                       padding: "8px 14px",
+                    },
+                    // Disable focus ring & border highlight
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      border: "none",
+                    },
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      border: "none",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      border: "none",
+                    },
+                    // Remove box-shadow and highlight when focused
+                    "&.Mui-focused": {
+                      boxShadow: "none",
+                      backgroundColor: "transparent",
                     },
                   }}
                 >

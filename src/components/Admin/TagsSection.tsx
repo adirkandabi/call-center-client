@@ -13,7 +13,8 @@ import { useTags } from "../../context/tagContext";
 export default function TagsSection() {
   const [loading, setLoading] = useState(false);
 
-  const { tags, refreshTags, addTag, showSpinner } = useTags();
+  const { tags, refreshTags, addTag, updateTagInState, showSpinner } =
+    useTags();
   const [inputValue, setInputValue] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [isError, setIsError] = useState(false);
@@ -65,10 +66,9 @@ export default function TagsSection() {
       if (!currentTag) return;
       console.log(newTitle);
       const upperCaseTitle = upperCaseFirstLetter(newTitle);
-      console.log(upperCaseTitle);
       currentTag.title = upperCaseTitle;
       const result = await updateTag(currentTag._id, upperCaseTitle);
-      addTag(result.data);
+      updateTagInState(result.data);
     } catch (err: any) {
       setErrorModalText("Somthing went wrong while editing the tag!");
       console.log(err);

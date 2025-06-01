@@ -7,6 +7,7 @@ interface TagsContextType {
   tags: Tag[];
   refreshTags: () => void;
   addTag: (tag: Tag) => void;
+  updateTagInState: (tag: Tag) => void;
   showSpinner: boolean;
 }
 
@@ -25,6 +26,11 @@ export const TagsProvider = ({ children }: { children: ReactNode }) => {
       setShowSpinner(false);
     }
   };
+  const updateTagInState = (updatedTag: Tag) => {
+    setTags((prev) =>
+      prev.map((tag) => (tag._id === updatedTag._id ? updatedTag : tag))
+    );
+  };
   const addTag = (tag: Tag) => {
     setTags((prev) => [...prev, tag]);
   };
@@ -33,7 +39,9 @@ export const TagsProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <TagsContext.Provider value={{ tags, refreshTags, addTag, showSpinner }}>
+    <TagsContext.Provider
+      value={{ tags, refreshTags, addTag, updateTagInState, showSpinner }}
+    >
       {children}
     </TagsContext.Provider>
   );
