@@ -38,7 +38,7 @@ export default function TagsSection() {
       setIsError(false);
       setErrorMsg("");
       setLoading(true);
-      const result = await createTag(inputValue);
+      const result = await createTag(inputValue.trim());
       console.log(result);
       await refreshTags();
     } catch (err: any) {
@@ -64,7 +64,7 @@ export default function TagsSection() {
     try {
       if (!currentTag) return;
       console.log(newTitle);
-      const upperCaseTitle = upperCaseFirstLetter(newTitle);
+      const upperCaseTitle = upperCaseFirstLetter(newTitle.trim());
       currentTag.title = upperCaseTitle;
       const result = await updateTag(currentTag._id, upperCaseTitle);
       updateTagInState(result.data);
